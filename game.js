@@ -14,17 +14,16 @@ for(var i = 0; i < charArr.length; i++) {
 
     if(char === charForward) {
       var newCharForward = charArr.slice([i + 1]);
+      }
 
-
-    } else if(char === charBackward) {
+       if(char === charBackward) {
       var newCharBackward = revChar.slice([i + 1]);
+    }
 
-
-    } else if(int === numForward) {
-      debugger;
+      if(int === numForward) {
       var newNumForward = numArrForward.slice([i + 1]);
-
-    } else if(int === numBackward) {
+      }
+      if(int === numBackward) {
       var newNumBackward = numArrBackward.slice([i + 1]);
       }
     }
