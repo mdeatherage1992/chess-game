@@ -21,6 +21,7 @@ for(var i = 0; i < charArr.length; i++) {
 
 
     } else if(int === numForward) {
+      debugger;
       var newNumForward = numArrForward.slice([i + 1]);
 
     } else if(int === numBackward) {
@@ -31,7 +32,7 @@ for(var i = 0; i < charArr.length; i++) {
       var diagonalCharForward = newCharForward[j];
       var diagonalCharBackward = newCharBackward[j];
       var diagonalNumForward = newNumForward[j];
-      var diagonalNumBackward =newNumBackward[j];
+      var diagonalNumBackward = newNumBackward[j];
       diagonals.push(diagonalCharForward + diagonalNumForward);
       diagonals.push(diagonalCharBackward + diagonalNumBackward);
       diagonals.push(diagonalCharForward + diagonalNumBackward);
