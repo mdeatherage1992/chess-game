@@ -17,7 +17,8 @@ var revChar = ['p','o','n','m','l','k','j','i', 'h', 'g', 'f', 'e','d','c','b','
 function diagUpChess(char, int) {
   var diagonals = [];
   var freshDiagonals = [];
-  for(var i = 0; i < charArr.length; i++) {
+  var finals = [];
+for(var i = 0; i < charArr.length; i++) {
     var charForward = charArr[i];
     var charBackward = revChar[i];
     var numForward = numArrForward[i];
@@ -43,16 +44,22 @@ function diagUpChess(char, int) {
       var diagonalCharBackward = newCharBackward[j];
       var diagonalNumForward = newNumForward[j];
       var diagonalNumBackward =newNumBackward[j];
-      diagonals.push(diagonalCharForward + diagonalNumForward);
-      diagonals.push(diagonalCharBackward + diagonalNumBackward);
+      diagonals.push(diagonalCharForward + diagonalNumBackward);
+      diagonals.push(diagonalCharBackward + diagonalNumForward);
   }
     for(var q = 0; q < diagonals.length; q++) {
       var naanDiagonals = diagonals[q];
-      if('h8' > naanDiagonals && !naanDiagonals.includes('undefined')) {
+      if(naanDiagonals < 'h8' && !naanDiagonals.includes('undefined')) {
         freshDiagonals.push(naanDiagonals);
       }
     }
-      return freshDiagonals;
+    for(var g = 0; g < freshDiagonals.length; g++) {
+      var finalDiagonals = freshDiagonals[g];
+      if(finalDiagonals.charAt(1) < 9 && finalDiagonals.length === 2) {
+        finals.push(finalDiagonals);
+      }
+    }
+      return finals;
   }
 
 
