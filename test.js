@@ -14,7 +14,7 @@ var numArrForward = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 var numArrBackward = [16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
 var charArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 var revChar = ['p','o','n','m','l','k','j','i', 'h', 'g', 'f', 'e','d','c','b','a'];
-function diagUpChess(char, int) {
+function knightMoves(char,int) {
   var diagonals = [];
   var freshDiagonals = [];
   var finals = [];
@@ -26,41 +26,98 @@ for(var i = 0; i < charArr.length; i++) {
 
     if(char === charForward) {
       var newCharForward = charArr.slice([i + 1]);
+      }
 
-
-    } else if(char === charBackward) {
+       if(char === charBackward) {
       var newCharBackward = revChar.slice([i + 1]);
+    }
 
-
-    } else if(int === numForward) {
+      if(int === numForward) {
       var newNumForward = numArrForward.slice([i + 1]);
-
-    } else if(int === numBackward) {
+      }
+      if(int === numBackward) {
       var newNumBackward = numArrBackward.slice([i + 1]);
       }
     }
-    for(var j = 0; j < 15; j++) {
-      var diagonalCharForward = newCharForward[j];
-      var diagonalCharBackward = newCharBackward[j];
-      var diagonalNumForward = newNumForward[j];
-      var diagonalNumBackward =newNumBackward[j];
-      diagonals.push(diagonalCharForward + diagonalNumBackward);
-      diagonals.push(diagonalCharBackward + diagonalNumForward);
-  }
-    for(var q = 0; q < diagonals.length; q++) {
-      var naanDiagonals = diagonals[q];
-      if(naanDiagonals < 'h8' && !naanDiagonals.includes('undefined')) {
-        freshDiagonals.push(naanDiagonals);
-      }
+
+    diagonals.push(newCharForward[0] + (int + 2));
+    diagonals.push(newCharForward[0] + (int - 2));
+    diagonals.push(newCharForward[1] + (int + 1));
+    diagonals.push(newCharForward[1] + (int - 1));
+    diagonals.push(newCharBackward[0] + (int + 2));
+    diagonals.push(newCharBackward[0] + (int - 2));
+    diagonals.push(newCharBackward[1] + (int + 1));
+    diagonals.push(newCharBackward[1] + (int - 1));
+
+    for(var j = 0; j < diagonals.length; j++) {
+      knightsDiagonals = diagonals[j];
+      if(knightsDiagonals < 'h8' && typeof knightsDiagonals === "string") {
+        freshDiagonals.push(knightsDiagonals);
     }
-    for(var g = 0; g < freshDiagonals.length; g++) {
-      var finalDiagonals = freshDiagonals[g];
-      if(finalDiagonals.charAt(1) < 9 && finalDiagonals.length === 2) {
-        finals.push(finalDiagonals);
-      }
-    }
-      return finals;
   }
+    return freshDiagonals;
+}
+
+
+
+
+// function diagUpChess(char, int) {
+//   var diagonals = [];
+//   var freshDiagonals = [];
+//   var finals = [];
+// for(var i = 0; i < charArr.length; i++) {
+//     var charForward = charArr[i];
+//     var charBackward = revChar[i];
+//     var numForward = numArrForward[i];
+//     var numBackward = numArrBackward[i];
+//
+//     if(char === charForward) {
+//       var newCharForward = charArr.slice([i + 1]);
+//
+//
+//     } else if(char === charBackward) {
+//       var newCharBackward = revChar.slice([i + 1]);
+//
+//
+//     } else if(int === numForward) {
+//       var newNumForward = numArrForward.slice([i + 1]);
+//
+//     } else if(int === numBackward) {
+//       var newNumBackward = numArrBackward.slice([i + 1]);
+//       }
+//     }
+//     for(var j = 0; j < 15; j++) {
+//       var diagonalCharForward = newCharForward[j];
+//       var diagonalCharBackward = newCharBackward[j];
+//       var diagonalNumForward = newNumForward[j];
+//       var diagonalNumBackward =newNumBackward[j];
+//       diagonals.push(diagonalCharForward + diagonalNumBackward);
+//       diagonals.push(diagonalCharBackward + diagonalNumForward);
+//   }
+//     for(var q = 0; q < diagonals.length; q++) {
+//       var naanDiagonals = diagonals[q];
+//       if(naanDiagonals < 'h8' && !naanDiagonals.includes('undefined')) {
+//         freshDiagonals.push(naanDiagonals);
+//       }
+//     }
+//     for(var g = 0; g < freshDiagonals.length; g++) {
+//       var finalDiagonals = freshDiagonals[g];
+//       if(finalDiagonals.charAt(1) < 9 && finalDiagonals.length === 2) {
+//         finals.push(finalDiagonals);
+//       }
+//     }
+//       return finals;
+//   }
+
+
+
+
+
+
+
+
+
+
 
 
 
