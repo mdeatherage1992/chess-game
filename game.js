@@ -3,6 +3,7 @@ var numArrForward = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 var numArrBackward = [16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
 var charArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 var revChar = ['p','o','n','m','l','k','j','i', 'h', 'g', 'f', 'e','d','c','b','a'];
+var valids = ['a','b','c','d','e','f','g','h'];
 var board = {
   "a":[1,2,3,4,5,6,7,8],
   "b":[1,2,3,4,5,6,7,8],
@@ -13,6 +14,7 @@ var board = {
   "g":[1,2,3,4,5,6,7,8],
   "h":[1,2,3,4,5,6,7,8]
 }
+
 
 //diagonal moves for queen
 function diagChess(char, int) {
@@ -67,6 +69,10 @@ for(var i = 0; i < charArr.length; i++) {
 
   // vertical and horizontal movements for queen and rook
   function vertHoriz(char,int) {
+    if(!board[`${char}`]) {
+    throw new Error("Invalid Move: characters go from A-H");
+
+    }
     var potentials = [];
     board[`${char}`].forEach(function(element){
       if(element !== int) {
@@ -78,7 +84,7 @@ for(var i = 0; i < charArr.length; i++) {
         potentials.push(key + int);
       }
     }
-    return potentials;
+    return potentials.join(", ");
   }
 
   //knights moves
@@ -122,15 +128,17 @@ for(var i = 0; i < charArr.length; i++) {
           finalKnights.push(knightsDiagonals);
       }
     }
-      return finalKnights;
+      return finalKnights.join(", ");
   }
 
 //main function to input piece and position on the board, with helper variables determining output
 function chessGame(piece,pos) {
+  if(pos.length > 2) {
+    throw new Error("Invalid Move: Sequence is 1 Letter A-H and 1 Number 1-8");
+  }
   var newPiece = piece.toLowerCase();
   var char = pos.charAt(0);
   var int = parseInt(pos.charAt(1));
-  var newPos = board[`${char}`][int];
 
 
   if(newPiece === "rook") {
@@ -141,12 +149,23 @@ function chessGame(piece,pos) {
     var queensMoves = [];
     queensMoves.push(diagChess(char,int));
     queensMoves.push(vertHoriz(char,int));
-    return queensMoves.flat();
+    return queensMoves.flat().join(", ");
   }
 
   if(newPiece === 'knight') {
     return knightMoves(char,int);
   }
+
+  if(newPiece !== 'knight' || newPiece !== "queen" || newPiece !== "rook") {
+    throw new Error("Invalid Piece. Please select queen,knight, or rook");
+
+  }
+
+  if(int > 9) {
+    throw new Error("Invalid Move: Board goes up to 8");
+  }
+
+
 
 
 }
