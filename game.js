@@ -124,7 +124,7 @@ for(var i = 0; i < charArr.length; i++) {
 
       for(var j = 0; j < diagonals.length; j++) {
         knightsDiagonals = diagonals[j];
-        if(knightsDiagonals < 'h8' && typeof knightsDiagonals === "string") {
+        if(knightsDiagonals < 'h8' && typeof knightsDiagonals === "string" && knightsDiagonals.length < 3 && knightsDiagonals.charAt(1) > 0) {
           finalKnights.push(knightsDiagonals);
       }
     }
